@@ -1,0 +1,29 @@
+.category-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cat-img-container {
+    width: 130px;
+    height: 130px;
+    border-radius: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.cat-img-container img {
+    object-fit: cover !important;
+    width: 130px !important;
+    height: 130px !important;
+    border-radius: 100% !important;
+    
+}
+
+.cat-title {
+    text-align: center;
+}

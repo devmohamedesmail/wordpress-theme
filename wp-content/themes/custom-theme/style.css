@@ -1,0 +1,85 @@
+/*!
+Theme Name: custom theme
+Theme URI: http://underscores.me/
+Author: Underscores.me
+Author URI: http://underscores.me/
+Description: Description
+Version: 1.0.0
+Tested up to: 5.4
+Requires PHP: 5.6
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: custom-theme
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned.
+
+custom theme is based on Underscores https://underscores.me/, (C) 2012-2020 Automattic, Inc.
+Underscores is distributed under the terms of the GNU GPL v2 or later.
+
+Normalizing styles have been helped along thanks to the fine work of
+Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
+*/
+
+
+/* .entry-title{
+	display: none !important;
+} */
+/* ############################## Header ######################### */
+
+
+:root{
+	--primary:#fca311;
+	--secondary:#14213d;
+	--dark:#000000;
+	--light:#e5e5e5;
+	--white:#ffffff;
+}
+
+.custom-top-header{
+	height: 40px;
+}
+
+.custom-middle-header{
+	height: 70px;
+}
+
+
+
+.custom-search-box{
+	
+}
+
+
+.add_cart_btn{
+	background-color: black !important;
+	text-align: center;
+	color: white !important;
+}
+
+
+
+/* Single Product page */
+.product_title{
+	font-weight: bold !important;
+	font-size: 30px !important;
+	
+
+}
+
+.quantity-input{
+	background-color: transparent !important;
+
+}
+.quantity-input:focus{
+	outline: none;
+	border: none;
+}
+.single_add_to_cart_button {
+	background-color: var(--primary)!important;
+	height: 50px;
+	border-radius: 0;
+	font-size: 14px;
+	width: 50%;
+}
