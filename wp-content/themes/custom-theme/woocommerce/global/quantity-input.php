@@ -36,11 +36,11 @@ $label = ! empty($args['product_name']) ? sprintf(esc_html__('%s quantity', 'woo
 	?>
 
 	<label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo esc_attr($label); ?></label>
-	<div class="flex items-center bg-gray-200 p-3">
-	<button type="button" class="quantity-button decrease" aria-label="<?php esc_attr_e('Decrease quantity', 'woocommerce'); ?>"><i class="bi bi-dash"></i></button>
+	<div class="flex items-center quantity-container">
+		<button type="button" class="quantity-button decrease" aria-label="<?php esc_attr_e('Decrease quantity', 'woocommerce'); ?>"><i class="bi bi-dash"></i></button>
 		<input
 			type="text"
-			
+
 			<?php echo $readonly ? 'readonly="readonly"' : ''; ?>
 			id="<?php echo esc_attr($input_id); ?>"
 			class=" <?php echo esc_attr(join(' ', (array) $classes)); ?> quantity-input"
@@ -58,9 +58,10 @@ $label = ! empty($args['product_name']) ? sprintf(esc_html__('%s quantity', 'woo
 			inputmode="<?php echo esc_attr($inputmode); ?>"
 			autocomplete="<?php echo esc_attr(isset($autocomplete) ? $autocomplete : 'on'); ?>"
 			<?php endif; ?> />
-			<button type="button" class="quantity-button increase" aria-label="<?php esc_attr_e('Increase quantity', 'woocommerce'); ?>"><i class="bi bi-plus"></i></button>
+		<button type="button" class="quantity-button increase" aria-label="<?php esc_attr_e('Increase quantity', 'woocommerce'); ?>"><i class="bi bi-plus"></i></button>
 	</div>
-	<br>
+	<br /><br />
+	
 	<?php
 	/**
 	 * Hook to output something after quantity input field

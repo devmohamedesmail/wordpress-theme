@@ -10,7 +10,7 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main container m-auto">
+	<main id="primary" class="site-main container m-auto px-10">
 
 		<?php
 		while ( have_posts() ) :

@@ -197,3 +197,107 @@ function custom_quantity_buttons_script() {
 }
 add_action('wp_enqueue_scripts', 'custom_quantity_buttons_script');
 
+
+
+
+
+
+
+
+
+
+
+add_action( 'wp_footer', function() {
+    if ( is_product() ) { // Load only on single product pages
+        ?>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const slider = document.querySelector('.custom-slider');
+                const track = slider.querySelector('.slider-track');
+                const items = slider.querySelectorAll('.slider-item');
+                const prevButton = slider.querySelector('.slider-nav.prev');
+                const nextButton = slider.querySelector('.slider-nav.next');
+                
+                const slideWidth = items[0].offsetWidth;
+                let currentIndex = 0;
+
+                function updateSliderPosition() {
+                    const offset = -(slideWidth * currentIndex);
+                    track.style.transform = `translateX(${offset}px)`;
+                }
+
+                function showPrevSlide() {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        updateSliderPosition();
+                    }
+                }
+
+                function showNextSlide() {
+                    if (currentIndex < items.length - 4) { // Adjust 4 to the number of visible slides
+                        currentIndex++;
+                        updateSliderPosition();
+                    }
+                }
+
+                prevButton.addEventListener('click', showPrevSlide);
+                nextButton.addEventListener('click', showNextSlide);
+
+                // Optional: Disable buttons when at the edges
+                function updateNavButtons() {
+                    prevButton.disabled = currentIndex === 0;
+                    nextButton.disabled = currentIndex >= items.length - 4; // Adjust 4 to the number of visible slides
+                }
+
+                prevButton.addEventListener('click', updateNavButtons);
+                nextButton.addEventListener('click', updateNavButtons);
+                updateNavButtons();
+            });
+        </script>
+        <?php
+    }
+});
+
+
+
+
+
+
+
+add_action( 'wp_enqueue_scripts', function() {
+    if ( is_product() ) {
+        wp_add_inline_script( 'woocommerce', "
+            document.addEventListener('DOMContentLoaded', function() {
+                const form = document.querySelector('.variations_form');
+                if (!form) return;
+
+                // Initialize WooCommerce variation form
+                jQuery(form).wc_variation_form();
+
+                // Add event listeners to radio buttons
+                const radios = document.querySelectorAll('.variation-radio-group input[type=\"radio\"]');
+                radios.forEach(function(radio) {
+                    radio.addEventListener('change', function() {
+                        const attributeName = this.name;
+                        const value = this.value;
+
+                        // Find the corresponding select dropdown
+                        const select = form.querySelector('select[name=\"' + attributeName + '\"]');
+                        if (select) {
+                            select.value = value;
+                            jQuery(select).trigger('change'); // Trigger change event
+                        }
+
+                        // Trigger WooCommerce update events
+                        jQuery(form).trigger('woocommerce_variation_select_change');
+                        jQuery(form).trigger('check_variations');
+                    });
+                });
+
+                // Trigger initial variation check
+                form.dispatchEvent(new Event('check_variations'));
+            });
+        ");
+    }
+});
+

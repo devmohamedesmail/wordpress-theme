@@ -42,8 +42,9 @@ if ( post_password_required() ) {
 	 */
 	do_action( 'woocommerce_before_single_product_summary' );
 	?>
-
+  
 	<div class="summary entry-summary  ">
+	    <h1 class="product-title text-xl"><?php the_title(); ?></h1>
 		<?php
 		/**
 		 * Hook: woocommerce_single_product_summary.
